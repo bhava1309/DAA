@@ -1,0 +1,22 @@
+def minimumAddedCoins(coins, target):
+
+    coins.sort()
+
+    reach = 1
+    i = 0
+    added = 0
+
+    while reach <= target:
+
+        if i < len(coins) and coins[i] <= reach:
+            reach += coins[i]
+            i += 1
+        else:
+            reach += reach
+            added += 1
+
+    return added
+
+
+print(minimumAddedCoins([1,4,10],19))
+print(minimumAddedCoins([1,4,10,5,7,19],19))
