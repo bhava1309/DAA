@@ -1,0 +1,18 @@
+INF = float('inf')
+
+graph = [
+[0,2,3,INF],
+[INF,0,INF,INF],
+[INF,7,0,1],
+[6,INF,INF,0]
+]
+
+dist = [row[:] for row in graph]
+
+for k in range(4):
+    for i in range(4):
+        for j in range(4):
+            dist[i][j] = min(dist[i][j],
+                             dist[i][k]+dist[k][j])
+
+print("Shortest Path C to A =", dist[2][0])
