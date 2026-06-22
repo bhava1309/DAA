@@ -1,0 +1,22 @@
+def generalizedQueens(rows, cols):
+
+    solution = []
+
+    usedCols = set()
+
+    for r in range(rows):
+
+        for c in range(cols):
+
+            if c not in usedCols:
+
+                solution.append(c + 1)
+
+                usedCols.add(c)
+
+                break
+
+    return solution
+
+
+print(generalizedQueens(8,10))
