@@ -1,0 +1,43 @@
+import heapq
+
+class Node:
+    def __init__(self,freq,char,left=None,right=None):
+        self.freq=freq
+        self.char=char
+        self.left=left
+        self.right=right
+
+    def __lt__(self,other):
+        return self.freq<other.freq
+
+def generate(node,code,codes):
+
+    if node.char is not None:
+        codes[node.char]=code
+        return
+
+    generate(node.left,code+"0",codes)
+    generate(node.right,code+"1",codes)
+
+
+chars=['a','b','c','d']
+freq=[5,9,12,13]
+
+heap=[]
+
+for c,f in zip(chars,freq):
+    heapq.heappush(heap,Node(f,c))
+
+while len(heap)>1:
+
+    x=heapq.heappop(heap)
+    y=heapq.heappop(heap)
+
+    heapq.heappush(heap,
+                   Node(x.freq+y.freq,None,x,y))
+
+codes={}
+
+generate(heap[0],"",codes)
+
+print(codes)
