@@ -1,0 +1,17 @@
+def maxCoins(piles):
+    piles.sort()
+    ans = 0
+    left = 0
+    right = len(piles) - 1
+
+    while left < right:
+        right -= 1          # Alice takes largest
+        ans += piles[right] # You take second largest
+        right -= 1
+        left += 1           # Bob takes smallest
+
+    return ans
+
+
+print(maxCoins([2,4,1,2,7,8]))
+print(maxCoins([2,4,5]))
