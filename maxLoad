@@ -1,0 +1,17 @@
+def maxLoad(weights, capacity):
+
+    weights.sort(reverse=True)
+
+    total = 0
+
+    for w in weights:
+        if total + w <= capacity:
+            total += w
+
+    return total
+
+
+# Test Cases
+print(maxLoad([10,20,30,40,50],60))
+
+print(maxLoad([5,10,15,20,25,30],50))
