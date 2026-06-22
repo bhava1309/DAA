@@ -1,0 +1,30 @@
+from itertools import permutations
+
+def tsp(cost):
+
+    n = len(cost)
+
+    answer = float('inf')
+
+    for perm in permutations(range(1,n)):
+
+        total = cost[0][perm[0]]
+
+        for i in range(len(perm)-1):
+            total += cost[perm[i]][perm[i+1]]
+
+        total += cost[perm[-1]][0]
+
+        answer = min(answer,total)
+
+    return answer
+
+
+graph = [
+[0,10,15,20],
+[10,0,35,25],
+[15,35,0,30],
+[20,25,30,0]
+]
+
+print(tsp(graph))
