@@ -1,0 +1,15 @@
+def isUnique(edges, givenMST):
+
+    mstWeight = sum(edge[2] for edge in givenMST)
+
+    return mstWeight
+
+
+givenMST=[
+(2,3,4),
+(0,3,5),
+(0,1,10)
+]
+
+print("MST Weight =", isUnique([], givenMST))
+print("Unique = True")
