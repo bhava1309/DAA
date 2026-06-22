@@ -1,0 +1,44 @@
+def minimumTimeRequired(jobs, k):
+
+    jobs.sort(reverse=True)
+
+    workers = [0] * k
+
+    def backtrack(i, limit):
+
+        if i == len(jobs):
+            return True
+
+        for j in range(k):
+
+            if workers[j] + jobs[i] <= limit:
+
+                workers[j] += jobs[i]
+
+                if backtrack(i + 1, limit):
+                    return True
+
+                workers[j] -= jobs[i]
+
+            if workers[j] == 0:
+                break
+
+        return False
+
+    left = max(jobs)
+    right = sum(jobs)
+
+    while left < right:
+
+        mid = (left + right) // 2
+
+        if backtrack(0, mid):
+            right = mid
+        else:
+            left = mid + 1
+
+    return left
+
+
+print(minimumTimeRequired([3,2,3],3))
+print(minimumTimeRequired([1,2,4,7,8],2))
