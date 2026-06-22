@@ -1,0 +1,26 @@
+def decode(encoded,codes):
+
+    reverse={v:k for k,v in codes.items()}
+
+    ans=""
+    temp=""
+
+    for bit in encoded:
+
+        temp+=bit
+
+        if temp in reverse:
+            ans+=reverse[temp]
+            temp=""
+
+    return ans
+
+
+codes={
+'c':'0',
+'b':'10',
+'a':'110',
+'d':'111'
+}
+
+print(decode("110100111110",codes))
